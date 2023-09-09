@@ -6,15 +6,15 @@ body, h1, h2, ul, li, a {
 
 /* Set a background color for the entire page */
 body {
-    background-color: #f0f0f0; /* Light gray */
-    font-family: Arial, sans-serif;
+    background-color: #dda0dd; /* Light gray */
+    font-family: cursive, sans-serif;
     color: #333; /* Dark gray for text */
 }
 
 /* Style the header */
 header {
     background-color: #007bff; /* Blue */
-    color: white;
+    color: pink;
     text-align: center;
     padding: 20px;
 }
@@ -22,6 +22,12 @@ header {
 /* Style headings */
 h1 {
     font-size: 36px;
+    /* Edit font size, color, and other properties as needed */
+}
+
+h2 {
+    font-size: 24px;
+    /* Edit font size, color, and other properties as needed */
 }
 
 /* Style links */
@@ -43,6 +49,7 @@ ul {
 
 li {
     margin: 10px 0;
+    /* Edit margin or padding as needed */
 }
 
 /* Style buttons */
@@ -59,3 +66,7 @@ li {
 .button:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }
+
+/* Editable CSS section */
+/* You can add more custom styles below this line */
+
