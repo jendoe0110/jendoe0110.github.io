@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Integer Operations</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            width: 100px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
+        #result {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form id="calcForm">
+        <label for="num1">Enter Number 1:</label>
+        <input type="text" id="num1" name="num1" required>
+
+        <label for="num2">Enter Number 2:</label>
+        <input type="text" id="num2" name="num2" required>
+
+        <label for="num3">Enter Number 3:</label>
+        <input type="text" id="num3" name="num3" required>
+
+        <button type="button" id="calculate">Calculate</button>
+        <button type="button" id="clear">Clear</button>
+
+        <textarea id="result" readonly></textarea>
+    </form>
+
+    <script>
+        $(document).ready(function () {
+            $('#calculate').click(function () {
+                // Get user inputs
+                var num1 = parseFloat($('#num1').val());
+                var num2 = parseFloat($('#num2').val());
+                var num3 = parseFloat($('#num3').val());
+
+                // Check if inputs are valid numbers
+                if (!isNaN(num1) && !isNaN(num2) && !isNaN(num3)) {
+                    // Calculate operations
+                    var sum = num1 + num2 + num3;
+                    var average = sum / 3;
+                    var product = num1 * num2 * num3;
+                    var smallest = Math.min(num1, num2, num3);
+                    var largest = Math.max(num1, num2, num3);
+
+                    // Display results in the textarea
+                    $('#result').val('Sum: ' + sum + '\n' +
+                                    'Average: ' + average + '\n' +
+                                    'Product: ' + product + '\n' +
+                                    'Smallest: ' + smallest + '\n' +
+                                    'Largest: ' + largest);
+
+                    // Fade in the results
+                    $('#result').fadeIn();
+                } else {
+                    // Display error message if inputs are not valid numbers
+                    $('#result').val('Error: Please enter valid numbers.');
+
+                    // Fade in the error message
+                    $('#result').fadeIn();
+                }
+            });
+
+            $('#clear').click(function () {
+                // Clear the form and hide the results
+                $('#calcForm')[0].reset();
+                $('#result').hide();
+            });
+        });
+    </script>
+</body>
+</html>
