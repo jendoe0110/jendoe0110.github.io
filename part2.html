@@ -48,6 +48,9 @@
         <textarea id="result" readonly></textarea>
     </form>
 
+    <!-- JavaScript Back Button -->
+    <button onclick="goBack()">Go Back to Homework 2</button>
+
     <script>
         $(document).ready(function () {
             $('#calculate').click(function () {
@@ -89,6 +92,11 @@
                 $('#result').hide();
             });
         });
+
+        // JavaScript Back Button Function
+        function goBack() {
+            window.location.href = "homework2.html"; // Replace with the correct URL for Homework 2
+        }
     </script>
 </body>
 </html>
