@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monetary Exchange Rates</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="text"]:focus {
+            background-color: lightyellow;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>Monetary Exchange Rates</h2>
+    <table>
+        <tr>
+            <th>Currency</th>
+            <th>Rate</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>Euro</td>
+            <td>0.84</td>
+            <td><input type="text" id="euroValue" readonly></td>
+        </tr>
+        <tr>
+            <td>Canadian Dollar</td>
+            <td>1.23</td>
+            <td><input type="text" id="cadValue" readonly></td>
+        </tr>
+        <tr>
+            <td>Hong Kong Dollar</td>
+            <td>7.76</td>
+            <td><input type="text" id="hkdValue" readonly></td>
+        </tr>
+        <tr>
+            <td>Japanese Yen</td>
+            <td>110.80</td>
+            <td><input type="text" id="jpyValue" readonly></td>
+        </tr>
+        <tr>
+            <td>Mexican Peso</td>
+            <td>19.82</td>
+            <td><input type="text" id="mxnValue" readonly></td>
+        </tr>
+    </table>
+
+    <label for="usdAmount">Enter Amount of U.S. Dollars</label>
+    <input type="text" id="usdAmount">
+    <button id="calculate">Calculate</button>
+
+    <div class="hidden">
+        <p>The foreign exchange rates in June 2021</p>
+        <p>Enter a dollar amount in the table below to see the corresponding foreign exchange values.</p>
+    </div>
+
+    <a href="extracredit.html">Go to Extra Credit</a>
+
+    <script>
+        $(document).ready(function () {
+            $('#calculate').click(function () {
+                // Get user input
+                var usdAmount = parseFloat($('#usdAmount').val());
+
+                // Check if input is a valid number
+                if (!isNaN(usdAmount)) {
+                    // Perform currency conversion and round to 2 decimal places
+                    var euroValue = (usdAmount * 0.84).toFixed(2);
+                    var cadValue = (usdAmount * 1.23).toFixed(2);
+                    var hkdValue = (usdAmount * 7.76).toFixed(2);
+                    var jpyValue = (usdAmount * 110.80).toFixed(2);
+                    var mxnValue = (usdAmount * 19.82).toFixed(2);
+
+                    // Display results in the input fields
+                    $('#euroValue').val(euroValue);
+                    $('#cadValue').val(cadValue);
+                    $('#hkdValue').val(hkdValue);
+                    $('#jpyValue').val(jpyValue);
+                    $('#mxnValue').val(mxnValue);
+
+                    // Show hidden instructions
+                    $('.hidden').show();
+                } else {
+                    // Display error message if input is not a valid number
+                    alert('Please enter a valid number for U.S. Dollars.');
+                }
+            });
+
+            // Color the input box on focus
+            $('#usdAmount').focus(function () {
+                $(this).css('background-color', 'lightyellow');
+            });
+        });
+    </script>
+</body>
+</html>
