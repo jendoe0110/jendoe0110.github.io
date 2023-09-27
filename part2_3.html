@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Salesperson Earnings</title>
+    <!-- Include jQuery and jQuery UI for tooltip functionality -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+    <h1>Salesperson Earnings</h1>
+    
+    <!-- Salesperson's name input with tooltip -->
+    <label for="salespersonName">Salesperson's Name:</label>
+    <input type="text" id="salespersonName" title="Please make sure that the salesperson's name is spelled correctly"><br>
+
+    <!-- Form for entering quantity sold for each item -->
+    <form id="salesForm">
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Qty Sold</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>Item 1</td>
+                <td><input type="number" id="qtyItem1" min="0" value="0"></td>
+                <td><input type="text" id="totalItem1" readonly></td>
+            </tr>
+            <tr>
+                <td>Item 2</td>
+                <td><input type="number" id="qtyItem2" min="0" value="0"></td>
+                <td><input type="text" id="totalItem2" readonly></td>
+            </tr>
+            <tr>
+                <td>Item 3</td>
+                <td><input type="number" id="qtyItem3" min="0" value="0"></td>
+                <td><input type="text" id="totalItem3" readonly></td>
+            </tr>
+            <tr>
+                <td>Item 4</td>
+                <td><input type="number" id="qtyItem4" min="0" value="0"></td>
+                <td><input type="text" id="totalItem4" readonly></td>
+            </tr>
+        </table>
+
+        <button type="button" id="calculateButton">Calculate Earnings</button>
+    </form>
+
+    <!-- Total Earnings -->
+    <label>Total Earnings:</label>
+    <input type="text" id="totalEarnings" readonly>
+
+    <script>
+        // Enable tooltip for the salesperson's name input
+        $(document).ready(function() {
+            $("#salespersonName").tooltip();
+        });
+
+        // Calculate earnings when the Calculate button is clicked
+        $("#calculateButton").click(function() {
+            // Get quantity sold for each item
+            const qtyItem1 = parseFloat($("#qtyItem1").val());
+            const qtyItem2 = parseFloat($("#qtyItem2").val());
+            const qtyItem3 = parseFloat($("#qtyItem3").val());
+            const qtyItem4 = parseFloat($("#qtyItem4").val());
+
+            // Check for valid numeric input
+            if (isNaN(qtyItem1) || isNaN(qtyItem2) || isNaN(qtyItem3) || isNaN(qtyItem4)) {
+                alert("Invalid input. Please enter valid quantities.");
+                return;
+            }
+
+            // Calculate total sales and earnings
+            const totalSales = (qtyItem1 * 20.99) + (qtyItem2 * 12.75) + (qtyItem3 * 9.95) + (qtyItem4 * 35.89);
+            const totalEarnings = 250 + (0.09 * totalSales);
+
+            // Display total sales and earnings with two decimal places
+            $("#totalEarnings").val(totalEarnings.toFixed(2));
+        });
+    </script>
+</body>
+</html>
