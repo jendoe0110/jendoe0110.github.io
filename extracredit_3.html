@@ -20,6 +20,9 @@
         <!-- Result message will be displayed here -->
     </div>
 
+    <!-- JavaScript button to go back to Homework3.html -->
+    <button id="goBackButton" style="background-color: pink;">Go Back to Homework 3</button>
+
     <script>
         let correctAnswer;
         let attempts = 0;
@@ -59,6 +62,11 @@
 
         // Attach event listener to the Check Answer button
         document.getElementById("checkAnswer").addEventListener("click", checkAnswer);
+
+        // JavaScript code for the button to go back to Homework3.html
+        document.getElementById("goBackButton").addEventListener("click", function() {
+            window.location.href = "Homework3.html"; // Redirect to Homework3.html
+        });
     </script>
 </body>
 </html>
