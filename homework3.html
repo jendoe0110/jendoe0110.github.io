@@ -1,32 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+    <head>CNIT 133 Homework 3</head>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homework 2</title>
-    <!-- Edit the meta description below as needed -->
-    <meta name="description" content="Description of Homework 2">
-    <style>
-        /* Your CSS styles for this specific homework assignment go here */
-    </style>
+    <title>Part 1: Student Grades</title>
 </head>
 <body>
-    <header>
-        <h1>Homework 3</h1>
-    </header>
-    <main>
-        <!-- Your content for Homework 2 goes here -->
-        <p>This is where you can put the content of Homework 2.</p>
+    <h1>Student Grades</h1>
+    
+    <!-- Form for entering student grades -->
+    <form id="gradeForm">
+        <label for="hwAvg">Homework Average:</label>
+        <input type="number" id="hwAvg" name="hwAvg" min="0" max="100" required><br>
 
-        <!-- Back button to return to the main page (README) -->
-        <button onclick="goBack()">Back to Main Page</button>
+        <label for="midExam">Mid-Term Exam Score:</label>
+        <input type="number" id="midExam" name="midExam" min="0" max="100" required><br>
 
-        <script>
-            // JavaScript function to navigate back to the previous page
-            function goBack() {
-                window.history.back();
+        <label for="finalExam">Final Exam Score:</label>
+        <input type="number" id="finalExam" name="finalExam" min="0" max="100" required><br>
+
+        <label for="participation">Participation:</label>
+        <input type="number" id="participation" name="participation" min="0" max="100" required><br>
+
+        <button type="button" id="calculateButton">Calculate</button>
+        <button type="button" id="clearButton">Clear</button>
+    </form>
+
+    <!-- Output area for results and error message -->
+    <div id="output"></div>
+
+    <script>
+        document.getElementById("calculateButton").addEventListener("click", function() {
+            // Get input values
+            const hwAvg = parseFloat(document.getElementById("hwAvg").value);
+            const midExam = parseFloat(document.getElementById("midExam").value);
+            const finalExam = parseFloat(document.getElementById("finalExam").value);
+            const participation = parseFloat(document.getElementById("participation").value);
+
+            // Check for valid input
+            if (isNaN(hwAvg) || isNaN(midExam) || isNaN(finalExam) || isNaN(participation)) {
+                document.getElementById("output").textContent = "Invalid input. Please enter valid grades.";
+                return;
             }
-        </script>
-    </main>
+
+            // Calculate final average
+            const finalAverage = (.5 * hwAvg) + (.2 * midExam) + (.2 * finalExam) + (.1 * participation);
+
+            // Calculate letter grade
+            let letterGrade;
+            if (finalAverage >= 90) {
+                letterGrade = "A";
+            } else if (finalAverage >= 80) {
+                letterGrade = "B";
+            } else if (finalAverage >= 70) {
+                letterGrade = "C";
+            } else if (finalAverage >= 60) {
+                letterGrade = "D";
+            } else {
+                letterGrade = "F";
+            }
+
+            // Display result
+            document.getElementById("output").textContent = `Final Average: ${Math.round(finalAverage)} (${letterGrade})`;
+
+            // Check if the student must retake the course
+            if (letterGrade === "D" || letterGrade === "F") {
+                document.getElementById("output").textContent += "\nStudent must retake the course.";
+            }
+        });
+
+        document.getElementById("clearButton").addEventListener("click", function() {
+            // Clear the form and output area
+            document.getElementById("gradeForm").reset();
+            document.getElementById("output").textContent = "";
+        });
+    </script>
 </body>
 </html>
+
