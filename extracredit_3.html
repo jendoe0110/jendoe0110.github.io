@@ -39,9 +39,8 @@
         function checkAnswer() {
             const userAnswer = parseInt(document.getElementById("answer").value);
 
-            if (userAnswer === correctAnswer) {
-                document.getElementById("resultArea").textContent = "Very good!";
-                attempts = 0; // Reset attempts
+            if (userAnswer === correctAnswer) {attempts = 0;
+                document.getElementById("resultArea").textContent = "Very good!"
                 generateQuestion();
             } else {
                 attempts++;
