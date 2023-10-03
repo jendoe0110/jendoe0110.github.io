@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CNIT 133 Homework 3 - Part 2</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+    <h1>CNIT 133 Homework 3 - Part 2</h1>
+    
+    <form id="salesForm">
+        <label for="salespersonName" title="Please make sure that the salesperson's name is spelled correctly">Salesperson's Name:</label>
+        <input type="text" id="salespersonName" name="salespersonName"><br><br>
+
+        <table border="1">
+            <tr>
+                <th>Item</th>
+                <th>Qty Sold</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>Item 1</td>
+                <td><input type="number" id="qtyItem1" name="qtyItem1" min="0" value="0"></td>
+                <td><input type="text" id="totalItem1" name="totalItem1" readonly></td>
+            </tr>
+            <tr>
+                <td>Item 2</td>
+                <td><input type="number" id="qtyItem2" name="qtyItem2" min="0" value="0"></td>
+                <td><input type="text" id="totalItem2" name="totalItem2" readonly></td>
+            </tr>
+            <tr>
+                <td>Item 3</td>
+                <td><input type="number" id="qtyItem3" name="qtyItem3" min="0" value="0"></td>
+                <td><input type="text" id="totalItem3" name="totalItem3" readonly></td>
+            </tr>
+            <tr>
+                <td>Item 4</td>
+                <td><input type="number" id="qtyItem4" name="qtyItem4" min="0" value="0"></td>
+                <td><input type="text" id="totalItem4" name="totalItem4" readonly></td>
+            </tr>
+        </table>
+
+        <label for="totalEarnings">Total Earnings:</label>
+        <input type="text" id="totalEarnings" name="totalEarnings" readonly><br><br>
+
+        <input type="button" value="Calculate Earnings" onclick="calculateEarnings()">
+    </form>
+
+    <script>
+        $(document).ready(function () {
+            $("#salespersonName").tooltip();
+        });
+
+        function calculateEarnings() {
+            var qtyItem1 = parseFloat(document.getElementById("qtyItem1").value);
+            var qtyItem2 = parseFloat(document.getElementById("qtyItem2").value);
+            var qtyItem3 = parseFloat(document.getElementById("qtyItem3").value);
+            var qtyItem4 = parseFloat(document.getElementById("qtyItem4").value);
+
+            if (isNaN(qtyItem1) || isNaN(qtyItem2) || isNaN(qtyItem3) || isNaN(qtyItem4) ||
+                qtyItem1 < 0 || qtyItem2 < 0 || qtyItem3 < 0 || qtyItem4 < 0) {
+                alert("Invalid input. Please enter valid quantities (non-negative numbers).");
+                return;
+            }
+
+            var totalItem1 = qtyItem1 * 20.99;
+            var totalItem2 = qtyItem2 * 12.75;
+            var totalItem3 = qtyItem3 * 9.95;
+            var totalItem4 = qtyItem4 * 35.89;
+
+            var totalSales = totalItem1 + totalItem2 + totalItem3 + totalItem4;
+            var earnings = 250 + (0.09 * totalSales);
+
+            document.getElementById("totalItem1").value = totalItem1.toFixed(2);
+            document.getElementById("totalItem2").value = totalItem2.toFixed(2);
+            document.getElementById("totalItem3").value = totalItem3.toFixed(2);
+            document.getElementById("totalItem4").value = totalItem4.toFixed(2);
+            document.getElementById("totalEarnings").value = earnings.toFixed(2);
+        }
+    </script>
+</body>
+</html>
