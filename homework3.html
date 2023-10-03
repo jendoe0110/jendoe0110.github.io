@@ -6,17 +6,76 @@
 <body>
     <h1>CNIT 133 Homework 3 - Functions</h1>
     
-    <!-- Links to other pages with descriptions -->
-    <p><a href="part1_3.html">Part 1: Student Grade Calculator</a> - Calculate student grades based on input.</p>
-    <p><a href="part2_3.html">Part 2: Commission Sales Calculator</a> - Calculate sales commissions.</p>
-    <p><a href="extracredit_3.html">Extra Credit: Math Games</a> - Fun math games for students.</p>
-    
-    <!-- Button to return to the main page -->
-    <button onclick="goBack()">Return to Main Page</button>
+    <h2>Part 1: Student Grades</h2>
+    <p>This section allows you to calculate a student's final average and letter grade.</p>
+
+    <form id="gradeForm">
+        <label for="hwAvg">Homework Average:</label>
+        <input type="number" id="hwAvg" name="hwAvg" min="0" max="100" required><br><br>
+
+        <label for="midExam">Mid-Term Exam Score:</label>
+        <input type="number" id="midExam" name="midExam" min="0" max="100" required><br><br>
+
+        <label for="finalExam">Final Exam Score:</label>
+        <input type="number" id="finalExam" name="finalExam" min="0" max="100" required><br><br>
+
+        <label for="participation">Participation:</label>
+        <input type="number" id="participation" name="participation" min="0" max="100" required><br><br>
+
+        <input type="button" value="Calculate" onclick="calculateGrade()">
+        <input type="button" value="Clear Form" onclick="clearForm()">
+    </form>
+
+    <div id="result"></div>
+
+    <a href="Part1Page.html">Go to Part 1</a><br>
+    <a href="Part2Page.html">Go to Part 2</a><br>
+    <a href="ExtraCreditPage.html">Extra Credit</a><br>
+    <a href="MainPage.html">Go back to the main page of the course (Homework 1)</a><br>
 
     <script>
-        function goBack() {
-            window.location.href = "https://jendoe0110.github.io";
+        function calculateGrade() {
+            // Get input values
+            var hwAvg = parseFloat(document.getElementById("hwAvg").value);
+            var midExam = parseFloat(document.getElementById("midExam").value);
+            var finalExam = parseFloat(document.getElementById("finalExam").value);
+            var participation = parseFloat(document.getElementById("participation").value);
+
+            // Check for valid input
+            if (isNaN(hwAvg) || isNaN(midExam) || isNaN(finalExam) || isNaN(participation) ||
+                hwAvg < 0 || hwAvg > 100 || midExam < 0 || midExam > 100 || finalExam < 0 || finalExam > 100 || participation < 0 || participation > 100) {
+                document.getElementById("result").innerHTML = "Invalid input. Please enter valid grades (0-100).";
+                return;
+            }
+
+            // Calculate final average
+            var finalAverage = (.5 * hwAvg) + (.2 * midExam) + (.2 * finalExam) + (.1 * participation);
+
+            // Determine letter grade
+            var letterGrade = "";
+            if (finalAverage >= 90) {
+                letterGrade = "A";
+            } else if (finalAverage >= 80) {
+                letterGrade = "B";
+            } else if (finalAverage >= 70) {
+                letterGrade = "C";
+            } else if (finalAverage >= 60) {
+                letterGrade = "D";
+            } else {
+                letterGrade = "F";
+            }
+
+            // Display result
+            var resultMessage = "Final Average: " + Math.round(finalAverage) + "<br>Letter Grade: " + letterGrade;
+            if (letterGrade == "D" || letterGrade == "F") {
+                resultMessage += "<br>Student must retake the course";
+            }
+            document.getElementById("result").innerHTML = resultMessage;
+        }
+
+        function clearForm() {
+            document.getElementById("gradeForm").reset();
+            document.getElementById("result").innerHTML = "";
         }
     </script>
 </body>
