@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Math Games</title>
+</head>
+<body>
+    <h1>Math Games</h1>
+
+    <script>
+        var num1, num2;
+        var correctAnswer;
+
+        function generateQuestion() {
+            num1 = Math.floor(Math.random() * 10);
+            num2 = Math.floor(Math.random() * 10);
+            correctAnswer = num1 * num2;
+            document.getElementById("question").textContent = "How much is " + num1 + " times " + num2 + "?";
+        }
+
+        function checkAnswer() {
+            var userAnswer = parseInt(document.getElementById("answer").value);
+
+            if (userAnswer === correctAnswer) {
+                document.getElementById("result").textContent = "Very good!";
+                document.getElementById("answer").disabled = true;
+                document.getElementById("submitBtn").disabled = true;
+                document.getElementById("playAgainBtn").style.display = "block";
+            } else {
+                document.getElementById("result").textContent = "No. Please try again.";
+            }
+        }
+
+        function playAgain(response) {
+            if (response === 'yes') {
+                document.getElementById("result").textContent = "";
+                document.getElementById("answer").value = "";
+                document.getElementById("answer").disabled = false;
+                document.getElementById("submitBtn").disabled = false;
+                document.getElementById("playAgainBtn").style.display = "none";
+                generateQuestion();
+            } else if (response === 'no') {
+                document.getElementById("result").textContent = "Thanks for playing, see you next time";
+                document.getElementById("answer").disabled = true;
+                document.getElementById("submitBtn").disabled = true;
+                document.getElementById("playAgainBtn").style.display = "none";
+            }
+        }
+
+        window.onload = function () {
+            generateQuestion();
+        };
+    </script>
+
+    <p id="question"></p>
+    <input type="number" id="answer" placeholder="Enter your answer">
+    <button id="submitBtn" onclick="checkAnswer()">Submit</button>
+    <br><br>
+
+    <div id="result"></div>
+
+    <button id="playAgainBtn" style="display: none;" onclick="playAgain('yes')">Yes</button>
+    <button id="noBtn" style="display: none;" onclick="playAgain('no')">No</button>
+
+    <a href="homework3.html">Return to Homework 3</a>
+</body>
+</html>
