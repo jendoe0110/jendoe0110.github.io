@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Part 2 - Compound Interest</title>
+  <style>
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Learn about Compound Interest</h1>
+  
+  <div id="tables"></div>
+
+  <script>
+    const rates = [0.05, 0.06, 0.07];
+  
+    for (let rate of rates) {
+      let tableHTML = `<table border="1"><thead><tr><th>Year</th><th>Amount on deposit</th><th>Interest Rate</th></tr></thead><tbody>`;
+  
+      let P = 1000;
+      for (let year = 1; year <= 5; year++) {
+        let A = P * Math.pow((1 + rate), year);
+        tableHTML += `<tr><td>${year}</td><td>${A.toFixed(2)}</td><td>${rate}</td></tr>`;
+      }
+      tableHTML += `</tbody></table><br>`;
+      document.getElementById("tables").innerHTML += tableHTML;
+    }
+  </script>
+</body>
+</html>
