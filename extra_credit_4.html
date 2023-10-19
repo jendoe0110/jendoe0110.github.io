@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hollow Square</title>
+  <script>
+    function drawSquare() {
+      const size = parseInt(document.getElementById("size").value);
+      let output = document.getElementById("output");
+
+      if (isNaN(size) || size < 2 || size > 10) {
+        output.innerHTML = "Please enter a valid number between 2 and 10.";
+        return;
+      }
+
+      let square = "";
+
+      for (let i = 1; i <= size; i++) {
+        if (i === 1 || i === size) {
+          for (let j = 1; j <= size; j++) {
+            square += "* ";
+          }
+        } else {
+          square += "*";
+          for (let j = 2; j < size; j++) {
+            square += "  ";
+          }
+          square += "*";
+        }
+        square += "<br>";
+      }
+
+      output.innerHTML = square;
+    }
+
+    function clearForm() {
+      document.getElementById("size").value = "";
+      document.getElementById("output").innerHTML = "";
+    }
+  </script>
+</head>
+<body>
+
+<h1>Draw a Hollow Square</h1>
+
+<form id="squareForm">
+  <label for="size">Enter a size (between 2 and 10): </label>
+  <input type="text" id="size">
+  <button type="button" onclick="drawSquare()">Draw</button>
+  <button type="button" onclick="clearForm()">Clear</button>
+</form>
+
+<p id="output"></p>
+
+</body>
+</html>
