@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>State Information Lookup</title>
+    <style>
+        body {
+            background-color: blue;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .button {
+            background-color: red;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border: none;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: darkred;
+        }
+        .result {
+            background-color: white;
+            color: black;
+            padding: 20px;
+            margin-top: 10px;
+        }
+        a {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>State Information Lookup</h1>
+    <a href="homework5.html">Go back to Homework 5 Main Page</a>
+    <form id="stateForm">
+        <input type="text" id="stateInput" placeholder="Type state name or abbreviation">
+        <input type="button" value="State Info" class="button" onclick="getStateInfo()">
+        <input type="reset" value="Clear" class="button">
+        <div id="output" class="result"></div>
+    </form>
+    
+    <script>
+        const statesData = [
+            { abbr: 'AL', name: 'Alabama', capital: 'Montgomery', population: '4,903,185' },
+            { abbr: 'AK', name: 'Alaska', capital: 'Juneau', population: '731,545' },
+            // Add the rest of the states in the same format
+        ];
+        
+        function getStateInfo() {
+            const userInput = document.getElementById('stateInput').value.trim().toLowerCase();
+            const outputDiv = document.getElementById('output');
+            const state = statesData.find(s => s.abbr.toLowerCase() === userInput || s.name.toLowerCase() === userInput);
+            
+            if (state) {
+                outputDiv.innerHTML = `Thanks for your inquiry, here is the information you requested:<br>
+                                      State abbr = ${state.abbr}<br>
+                                      State Name = ${state.name}<br>
+                                      Capital = ${state.capital}<br>
+                                      Population = ${state.population}`;
+            } else {
+                outputDiv.innerHTML = "Sorry, we do not have information about this state! We only have information about the following states:<br>" +
+                                      statesData.map(s => `${s.name} (${s.abbr})`).join(', ');
+            }
+        }
+        
+        document.getElementById('stateForm').onreset = function() {
+            document.getElementById('output').innerHTML = '';
+        };
+    </script>
+</body>
+</html>
