@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Dropdown Menus</title>
+    <style>
+        body {
+            background-color: lightblue;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Use full height of the viewport */
+        }
+        #container {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        select {
+            font-weight: bold; /* Makes text in dropdown bold */
+            margin: 10px;
+        }
+        button {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- Your form and other elements here -->
+        <!-- ... -->
+
+        <select id="menu1" onchange="window.open(this.value)">
+            <option value="url1.html">Site 1</option>
+            <option value="url2.html">Site 2</option>
+            <option value="url3.html">Site 3</option>
+        </select>
+
+        <select id="menu2">
+            <option value="url4.html">Site 4</option>
+            <option value="url5.html">Site 5</option>
+            <option value="url6.html">Site 6</option>
+        </select>
+        <button onclick="openSelectedUrl()">Go</button>
+
+        <script>
+            function openSelectedUrl() {
+                var url = document.getElementById("menu2").value;
+                window.open(url);
+            }
+        </script>
+    </div>
+</body>
+</html>
