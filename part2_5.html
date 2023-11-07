@@ -1,14 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Interactive Dropdown Menus</title>
-     <button onclick="goBack()">Go Back to Homework 5</button>
-
     <style>
         body {
-            background-color: darkgrey; /* Changed to dark grey */
+            background-color: darkgrey; /* Dark grey background */
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -18,49 +15,53 @@
             height: 100vh;
         }
         #container {
+            width: 50%;
             text-align: center;
-            background-color: white;
+            background-color: pink; /* Dropdown container in pink */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
         }
         h2 {
             font-weight: bold;
+            color: white; /* For visibility on dark grey background */
         }
         .menu-label {
             display: block;
             margin-top: 20px;
             font-weight: bold;
+            color: white; /* For visibility on dark grey background */
         }
         select {
             margin: 10px;
         }
-        button {
+        .back-button {
             font-weight: bold;
-        }
-        .menu-container {
-            margin-bottom: 20px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
         }
     </style>
 </head>
 <body>
-    <div id="container">The Future: Lux Aurum</h2>
+    <button class="back-button" onclick="window.location.href='homework5.html'">Go Back to Homework 5</button>
+    <div id="container">
+        <h2>The Future: Lux Aurum</h2>
 
         <div class="menu-container">
             <span class="menu-label">MENU 1</span>
-            <select id="menu1" onchange="window.open('http://luxaurum.com')">
+            <select id="menu1" onchange="window.open(this.value)">
                 <option value="http://luxaurum.com">Lux Aurum</option>
-                <option value="http://luxaurum.com">Lux Aurum</option>
-                <option value="http://luxaurum.com">Lux Aurum</option>
+                <!-- More options here if needed -->
             </select>
         </div>
 
         <div class="menu-container">
-            <span class="menu-label">MENU</span>
+            <span class="menu-label">MENU 2</span>
             <select id="menu2">
                 <option value="http://luxaurum.com">Lux Aurum</option>
-                <option value="http://luxaurum.com">Lux Aurum</option>
-                <option value="http://luxaurum.com">Lux Aurum</option>
+                <!-- More options here if needed -->
             </select>
             <button onclick="openSelectedUrl()">Go</button>
         </div>
@@ -74,3 +75,4 @@
     </div>
 </body>
 </html>
+
