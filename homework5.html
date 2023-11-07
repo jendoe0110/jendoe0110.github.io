@@ -4,34 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CNIT 133 Homework 5: Arrays</title>
-    <!-- Edit the meta description below as needed -->
     <meta name="description" content="Description of Homework 5">
     <style>
-        /* Your CSS styles for this specific homework assignment go here */
+        body {
+            background-color: darkgrey;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+        header {
+            margin-top: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        button {
+            background-color: pink;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        #back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
     </style>
 </head>
 <body>
+    <button id="back-button" onclick="window.location.href='https://jendoe0110.github.io/index.html'">Back to Index</button>
     <header>
         <h1>Homework 5</h1>
     </header>
     <main>
-        <!-- Your content for Homework 2 goes here -->
-        <p><ul>
-        <li><a href="part1_5.html">Part 1: User Information Form</a> - Fill in your details and preferences.</li>
-        <li><a href="part2_5.html">Part 2: Navigation Menus</a> - Use pulldown menus to navigate to different URLs.</li>
-        <li><a href="part3_5.html">Part 3: State Information Query</a> - Retrieve information about US states.</li>
-    </ul> </p>
-       
-      <!-- Back button to return to the main page (README) -->
-        <button onclick="goBack()">Back to Main Page</button>
-
-        <script>
-            // JavaScript function to navigate back to the previous page
-            function goBack() {
-                window.history.back();
-            }
-        </script>
+        <ul>
+            <li><button onclick="window.location.href='part1_5.html'">Part 1: User Information Form</button></li>
+            <li><button onclick="window.location.href='part2_5.html'">Part 2: Navigation Menus</button></li>
+            <li><button onclick="window.location.href='part3_5.html'">Part 3: State Information Query</button></li>
+        </ul>
     </main>
+    <script>
+        // Additional scripts can be added here if needed
+    </script>
 </body>
 </html>
 
