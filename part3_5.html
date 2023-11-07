@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
     <title>State Information Lookup</title>
     <style>
         body {
-            background-color: light blue;
+            background-color: lightblue; /* Correct color declaration */
             color: white;
             font-family: Arial, sans-serif;
             padding: 20px;
@@ -35,8 +36,8 @@
 <body>
     <h1>State Information Lookup</h1>
     <a href="homework5.html">Go back to Homework 5 Main Page</a>
-    <form id="stateForm">
-        <input type="text" id="stateInput" placeholder="Type state name or abbreviation">
+    <form id="stateForm" onsubmit="event.preventDefault(); getStateInfo();">
+        <input type="text" id="stateInput" placeholder="Type state name or abbreviation" onkeypress="if(event.keyCode==13){getStateInfo();}">
         <input type="button" value="State Info" class="button" onclick="getStateInfo()">
         <input type="reset" value="Clear" class="button">
         <div id="output" class="result"></div>
@@ -44,16 +45,15 @@
     
     <script>
         const statesData = [
-    { abbr: 'AL', name: 'Alabama', capital: 'Montgomery', population: '4,903,185' },
-    { abbr: 'AK', name: 'Alaska', capital: 'Juneau', population: '731,545' },
-    { abbr: 'AZ', name: 'Arizona', capital: 'Phoenix', population: '7,278,717' },
-    { abbr: 'AR', name: 'Arkansas', capital: 'Little Rock', population: '3,017,825' },
-    { abbr: 'CA', name: 'California', capital: 'Sacramento', population: '39,512,223' },
-    { abbr: 'CO', name: 'Colorado', capital: 'Denver', population: '5,758,736' }
-    // Add additional states as needed
-];
+            { abbr: 'AL', name: 'Alabama', capital: 'Montgomery', population: '4,903,185' },
+            { abbr: 'AK', name: 'Alaska', capital: 'Juneau', population: '731,545' },
+            { abbr: 'AZ', name: 'Arizona', capital: 'Phoenix', population: '7,278,717' },
+            { abbr: 'AR', name: 'Arkansas', capital: 'Little Rock', population: '3,017,825' },
+            { abbr: 'CA', name: 'California', capital: 'Sacramento', population: '39,512,223' },
+            { abbr: 'CO', name: 'Colorado', capital: 'Denver', population: '5,758,736' }
+            // Add additional states as needed
+        ];
 
-        
         function getStateInfo() {
             const userInput = document.getElementById('stateInput').value.trim().toLowerCase();
             const outputDiv = document.getElementById('output');
