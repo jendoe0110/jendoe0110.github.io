@@ -5,7 +5,7 @@
     <title>State Information Lookup</title>
     <style>
         body {
-            background-color: blue;
+            background-color: light blue;
             color: white;
             font-family: Arial, sans-serif;
             padding: 20px;
@@ -44,10 +44,15 @@
     
     <script>
         const statesData = [
-            { abbr: 'AL', name: 'Alabama', capital: 'Montgomery', population: '4,903,185' },
-            { abbr: 'AK', name: 'Alaska', capital: 'Juneau', population: '731,545' },
-            // Add the rest of the states in the same format
-        ];
+    { abbr: 'AL', name: 'Alabama', capital: 'Montgomery', population: '4,903,185' },
+    { abbr: 'AK', name: 'Alaska', capital: 'Juneau', population: '731,545' },
+    { abbr: 'AZ', name: 'Arizona', capital: 'Phoenix', population: '7,278,717' },
+    { abbr: 'AR', name: 'Arkansas', capital: 'Little Rock', population: '3,017,825' },
+    { abbr: 'CA', name: 'California', capital: 'Sacramento', population: '39,512,223' },
+    { abbr: 'CO', name: 'Colorado', capital: 'Denver', population: '5,758,736' }
+    // Add additional states as needed
+];
+
         
         function getStateInfo() {
             const userInput = document.getElementById('stateInput').value.trim().toLowerCase();
