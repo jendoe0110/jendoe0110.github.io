@@ -9,7 +9,7 @@
     <div id="about-me">
         <h1 id="title">Main Homework Page For CNIT 133</h1>
         <p>
-            About Me: [Insert your bio here]
+            About Me: Hello, My name is Jen. I am exciteed to be a part of this class, I hope that it will further me in my endeavors.
         </p>
         <!-- You can include more content about yourself here -->
     </div>
