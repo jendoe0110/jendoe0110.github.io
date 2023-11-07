@@ -1,72 +1,44 @@
-/* Reset some default styles for consistency */
-body, h1, h2, ul, li, a {
+
+/* style.css content */
+body {
+    background-color: darkgrey;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: space-between;
 }
 
-/* Set a background color for the entire page */
-body {
-    background-color: #dda0dd; /* Light gray */
-    font-family: cursive, sans-serif;
-    color: #333; /* Dark gray for text */
-}
-
-/* Style the header */
-header {
-    background-color: #007bff; /* Blue */
-    color: pink;
-    text-align: center;
-    padding: 20px;
-}
-
-/* Style headings */
-h1 {
-    font-size: 36px;
-    /* Edit font size, color, and other properties as needed */
-}
-
-h2 {
-    font-size: 24px;
-    /* Edit font size, color, and other properties as needed */
-}
-
-/* Style links */
-a {
-    color: #007bff; /* Blue */
-    text-decoration: none;
-    transition: color 0.3s ease; /* Smooth color transition on hover */
-}
-
-a:hover {
-    color: #0056b3; /* Darker blue on hover */
-}
-
-/* Style the list of assignments */
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-li {
-    margin: 10px 0;
-    /* Edit margin or padding as needed */
-}
-
-/* Style buttons */
-.button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff; /* Blue */
+#title {
+    font-size: 48px; /* Large text for the title */
+    font-weight: bold; /* Bold font for the title */
     color: white;
-    text-decoration: none;
+}
+
+#about-me {
+    width: 70%;
+    padding: 20px;
+    color: white; /* Light text color for readability on dark background */
+}
+
+#button-container {
+    width: 30%;
+    padding: 20px;
+    text-align: right; /* Aligns buttons to the right */
+}
+
+button {
+    background-color: pink;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
     border-radius: 5px;
-    transition: background-color 0.3s ease; /* Smooth background color transition on hover */
+    cursor: pointer;
 }
 
-.button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+button:hover {
+    background-color: #ff69b4; /* Slightly lighter pink on hover */
 }
 
-/* Editable CSS section */
-/* You can add more custom styles below this line */
-
+/* If needed, add more specific styles here */
