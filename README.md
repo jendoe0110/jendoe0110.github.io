@@ -1,16 +1,13 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Main Homework Page</title>
+    <title>CNIT 133</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="about-me">
         <h1 id="title">Main Homework Page For CNIT 133</h1>
-        <p>
-            About Me: Hello, My name is Jen. I am exciteed to be a part of this class, I hope that it will further me in my endeavors.
-        </p>
+        <h2> <p> Jennifer Rogers</p> </h2>
         <!-- You can include more content about yourself here -->
     </div>
 <div id="button-container"><!-- Insert buttons here, each linking to a different homework part -->
