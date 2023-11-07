@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Part 1 - User Information Form</title>
+<style>
+body {
+    background-color: #e0f7fa; /* Light blue background */
+    font-family: Arial, sans-serif; /* A more modern font family */
+  }
+  h1, h2, h3, h4, h5, h6 { /* All heading elements */
+    font-weight: bold; /* Make headings bold */
+    text-align: center; /* Center align headings */
+  }
+  #container {
+    width: 80%; /* Set a max width for the container */
+    margin: auto; /* Center the container */
+    padding: 20px; /* Add some padding inside the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow to the container */
+    background: white; /* Background color for the content area */
+  }
+  form {
+    max-width: 600px; /* Maximum width of the form */
+    margin: 20px auto; /* Center form in the middle of the page with some margin */
+    padding: 20px; /* Padding inside the form */
+    background: #ffffff; /* White background for the form */
+    border-radius: 8px; /* Rounded corners for the form */
+  }
+  input[type="text"],
+  select,
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin-bottom: 10px; /* Add some margin to the bottom of form elements */
+  }
+  button {
+    margin-right: 10px; /* Add some margin to the right of buttons */
+  }
+  #output {
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center; /* Center text in output div */
+  }
+  #output {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+</style>
+<script>
+function validateForm() {
+  var name = document.getElementById('fullName').value;
+  var ageGroup = document.querySelector('input[name="ageGroup"]:checked');
+  var browsers = document.querySelectorAll('input[name="browser"]:checked');
+  var movieType = document.getElementById('movieType').value;
+  var output = document.getElementById('output');
+  
+  if (!name) {
+    output.textContent = 'Please enter your full name.';
+    return false;
+  }
+  if (!ageGroup) {
+    output.textContent = 'Please select your age group.';
+    return false;
+  }
+  if (browsers.length === 0) {
+    output.textContent = 'Please select at least one browser.';
+    return false;
+  }
+  if (!movieType) {
+    output.textContent = 'Please select your preferred movie type.';
+    return false;
+  }
+  
+  output.textContent = 'Thanks, your data was submitted!';
+  return false; // Prevent actual form submission for demonstration purposes
+}
+
+function clearForm() {
+  document.getElementById('userForm').reset();
+  document.getElementById('output').textContent = '';
+}
+</script>
+</head>
+<body>
+    <h1>User Information Form</h1>
+    <a href="index.html">Back to Main Homework 5 Page</a>
+    <form id="userForm" onsubmit="return validateForm()">
+        <!-- Input text box for full name -->
+        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name"><br><br>
+        
+        <!-- Radio buttons for age group -->
+        <label><input type="radio" id="ageUnder21" name="ageGroup" value="less than 21"> Less than 21</label><br>
+        <label><input type="radio" id="age21To50" name="ageGroup" value="between 21 and 50"> Between 21 and 50</label><br>
+        <label><input type="radio" id="ageOver50" name="ageGroup" value="older than 50"> Older than 50</label><br><br>
+        
+        <!-- Checkboxes for browser selection -->
+        <label><input type="checkbox" id="browserFirefox" name="browser" value="Firefox"> Firefox</label><br>
+        <label><input type="checkbox" id="browserEdge" name="browser" value="Edge"> Edge</label><br>
+        <label><input type="checkbox" id="browserChrome" name="browser" value="Chrome"> Chrome</label><br>
+        <label><input type="checkbox" id="browserSafari" name="browser" value="Safari"> Safari</label><br><br>
+        
+        <!-- Select element for movie preference -->
+        <select id="movieType" name="movieType">
+            <option value="">Select your favorite movie type</option>
+            <option value="Action">Action</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Drama">Drama</option>
+            <option value="Documentary">Documentary</option>
+            <option value="Science Fiction">Science Fiction</option>
+        </select><br><br>
+        
+        <!-- Submit and Clear buttons -->
+        <button type="submit">Submit</button>
+        <button type="button" onclick="clearForm()">Clear</button>
+        
+        <!-- Output area -->
+        <div id="output"></div>
+    </form>
+</body>
+</html>
