@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Analysis Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: grey;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        #numberForm {
+            margin-bottom: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background-color: pink;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff69b4;
+        }
+        #result {
+            margin-top: 20px;
+            border: 1px solid white;
+            padding: 10px;
+        }
+        a {
+            color: white;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Number Analysis Tool</h1>
+    <form id="numberForm">
+        <label for="numberInput">Enter a number with at least 4 decimal places:</label><br>
+        <input type="text" id="numberInput" required>
+        <button type="submit">Submit</button>
+        <button type="button" onclick="clearForm()">Clear</button>
+    </form>
+    <div id="result"></div>
+    <a href="main-page.html">Back to Main Page</a>
+
+    <script>
+        document.getElementById('numberForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const input = document.getElementById('numberInput').value;
+            processNumber(input);
+        });
+
+        function processNumber(numberStr) {
+            const resultElement = document.getElementById('result');
+            const number = parseFloat(numberStr);
+
+            if (!numberStr.match(/^\d+\.\d{4,}$/)) {
+                resultElement.textContent = "You need to type a number with at least 4 decimals, please try again";
+                return;
+            }
+
+            const roundedInteger = Math.round(number);
+            const sqrtRounded = Math.round(Math.sqrt(number));
+            const roundedTenth = parseFloat(number.toFixed(1));
+            const roundedHundredth = parseFloat(number.toFixed(2));
+            const roundedThousandth = parseFloat(number.toFixed(3));
+
+            resultElement.innerHTML = `
+                You typed number ${number}<br>
+                Rounded to the nearest integer = ${roundedInteger}<br>
+                Square root rounded to integer = ${sqrtRounded}<br>
+                Rounded to the nearest 10th position = ${roundedTenth}<br>
+                Rounded to the nearest 100th position = ${roundedHundredth}<br>
+                Rounded to the nearest 1000th position = ${roundedThousandth}
+            `;
+        }
+
+        function clearForm() {
+            document.getElementById('numberInput').value = '';
+            document.getElementById('result').textContent = '';
+        }
+    </script>
+</body>
+</html>
