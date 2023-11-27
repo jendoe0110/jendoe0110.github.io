@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Count in Text</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: grey;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        textarea, input {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background-color: pink;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff69b4;
+        }
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Character Frequency Analyzer</h1>
+    <form id="charCountForm">
+        <textarea id="textContent" rows="4" cols="50" placeholder="Type your content here..."></textarea><br>
+        <input type="text" id="charInput" maxlength="1" placeholder="Enter a single character">
+        <button type="submit">Analyze</button>
+    </form>
+    <div id="result"></div>
+    <a href="main-page.html" style="color: pink;">Back to Main Page of Homework 6</a>
+
+    <script>
+        document.getElementById('charCountForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const text = document.getElementById('textContent').value;
+            const char = document.getElementById('charInput').value;
+            countCharacter(text, char);
+        });
+
+        function countCharacter(text, char) {
+            if (char.length === 0) {
+                alert("Please enter a character to search.");
+                return;
+            }
+
+            const regex = new RegExp(char, "gi");
+            const matches = text.match(regex);
+            const count = matches ? matches.length : 0;
+
+            if (count > 0) {
+                document.getElementById('result').textContent = `The character "${char}" appears ${count} times in the text.`;
+            } else {
+                const message = `Search character "${char}" not found in the content you typed.`;
+                openNewWindow(message);
+                document.getElementById('result').textContent = '';
+            }
+        }
+
+        function openNewWindow(message) {
+            const newWindow = window.open("", "", "width=300,height=100");
+            newWindow.document.write(`<p>${message}</p><button onclick="window.close()">Close</button>`);
+        }
+    </script>
+</body>
+</html>
