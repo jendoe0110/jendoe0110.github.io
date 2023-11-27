@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Character Count in Text</title>
+    <title>Phone Number Formatter</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,7 +12,7 @@
             text-align: center;
             padding: 20px;
         }
-        textarea, input {
+        input, button {
             margin-top: 10px;
             padding: 10px;
             border-radius: 5px;
@@ -22,9 +20,6 @@
         }
         button {
             background-color: pink;
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
             cursor: pointer;
         }
         button:hover {
@@ -34,54 +29,56 @@
             margin-top: 20px;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 </head>
 <body>
-    <h1>Character Frequency Analyzer</h1>
-    <form id="charCountForm">
-        <textarea id="textContent" rows="4" cols="50" placeholder="Type your content here..."></textarea><br>
-        <input type="text" id="charInput" maxlength="1" placeholder="Enter a single character">
-        <button type="submit">Analyze</button>
+    <h1>Phone Number Splitter</h1>
+    <form id="phoneNumberForm">
+        <input type="text" id="phoneNumberInput" placeholder="(999) 999-9999"><br>
+        <button type="button" onclick="splitPhoneNumber()">Format</button>
+        <button type="button" onclick="clearForm()">Clear</button>
     </form>
-    <div id="result"></div>
+    <div id="result">
+        <input type="text" id="areaCode" placeholder="Area Code" readonly>
+        <input type="text" id="firstThree" placeholder="First 3 Digits" readonly>
+        <input type="text" id="lastFour" placeholder="Last 4 Digits" readonly>
+    </div>
+    <p id="errorMessage"></p>
+    <a href="homework6.html" style="color: pink;">Back to Main Page of Homework 6</a>
 
     <script>
-        document.getElementById('charCountForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const text = document.getElementById('textContent').value;
-            const char = document.getElementById('charInput').value;
-            countCharacter(text, char);
+        $(document).ready(function(){
+            $('#phoneNumberInput').mask('(000) 000-0000');
         });
 
-        function countCharacter(text, char) {
-            if (char.length === 0) {
-                alert("Please enter a character to search.");
-                return;
-            }
+        function splitPhoneNumber() {
+            const phoneNumber = document.getElementById('phoneNumberInput').value;
+            const regex = /^\((\d{3})\) (\d{3})-(\d{4})$/;
+            const match = phoneNumber.match(regex);
 
-            const regex = new RegExp(char, "gi");
-            const matches = text.match(regex);
-            const count = matches ? matches.length : 0;
-
-            if (count > 0) {
-                document.getElementById('result').textContent = `The character "${char}" appears ${count} times in the text.`;
+            if (match) {
+                document.getElementById('areaCode').value = match[1];
+                document.getElementById('firstThree').value = match[2];
+                document.getElementById('lastFour').value = match[3];
+                document.getElementById('errorMessage').textContent = '';
             } else {
-                const message = `Search character "${char}" not found in the content you typed.`;
-                openNewWindow(message);
-                document.getElementById('result').textContent = '';
+                document.getElementById('errorMessage').textContent = 'Please enter the phone number in the format (999) 999-9999.';
+                clearResultFields();
             }
         }
 
-        function openNewWindow(message) {
-            const newWindow = window.open("", "", "width=300,height=100");
-            newWindow.document.write(`<p>${message}</p><button onclick="window.close()">Close</button>`);
+        function clearForm() {
+            document.getElementById('phoneNumberInput').value = '';
+            clearResultFields();
+            document.getElementById('errorMessage').textContent = '';
+        }
+
+        function clearResultFields() {
+            document.getElementById('areaCode').value = '';
+            document.getElementById('firstThree').value = '';
+            document.getElementById('lastFour').value = '';
         }
     </script>
-    <a href="homework6.html" style="color: pink;">Back to Main Page of Homework 6</a>
-<script>
-    $(document).ready(function(){
-        $('#phoneNumberInput').mask('(000) 000-0000');
-    });
-</script>
-
 </body>
 </html>
