@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Character Count in Text</title>
@@ -75,6 +77,11 @@
         }
     </script>
     <a href="homework6.html" style="color: pink;">Back to Main Page of Homework 6</a>
+<script>
+    $(document).ready(function(){
+        $('#phoneNumberInput').mask('(000) 000-0000');
+    });
+</script>
 
 </body>
 </html>
