@@ -27,11 +27,11 @@
     </style>
 </head>
 <body>
-    <h1>Your Heading for Part 1</h1>
+    <h1>Interactive Style Editor</h1>
     <main id="content-area">
-        <p>Paragraph 1 content...</p>
-        <p>Paragraph 2 content...</p>
-        <p>Paragraph 3 content...</p>
+        <p>Welcome to the Interactive Style Editor! Here, you can change the background color of this text area. Choose a color from the options below and see the background change in real-time.</p>
+        <p>Want to emphasize certain words? Use the checkboxes below to apply bold, italic, or underline styles to this entire text area. Feel free to combine these styles as you wish.</p>
+        <p>Adjust the font size of this text by selecting an option from the dropdown menu. Watch as the text grows or shrinks to match your selection. This is a great way to see how different font sizes impact the readability of content.</p>
     </main>
     <form id="style-form">
         Background Color:
@@ -63,7 +63,7 @@
         var bgcolor = $('input[name="bgcolor"]:checked').val();
         var fontsize = $('select[name="fontsize"]').val();
         var textstyle = $('input[name="textstyle"]:checked').map(function() {
-            return this.value;
+            return this value;
         }).get();
 
         $('#content-area').css('background-color', bgcolor);
