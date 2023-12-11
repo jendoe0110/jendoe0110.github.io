@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Part 1 - Style Interaction</title>
+    <script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+</head>
+<body>
+    <h1>Your Heading for Part 1</h1>
+    <main id="content-area">
+        <p>Paragraph 1 content...</p>
+        <p>Paragraph 2 content...</p>
+        <p>Paragraph 3 content...</p>
+    </main>
+    <form id="style-form">
+        Background Color:
+        <input type="radio" name="bgcolor" value="lightblue"> Light Blue
+        <input type="radio" name="bgcolor" value="lightgreen"> Light Green
+        <br>
+        Text Style:
+        <input type="checkbox" name="textstyle" value="underline"> Underline
+        <input type="checkbox" name="textstyle" value="bold"> Bold
+        <input type="checkbox" name="textstyle" value="italic"> Italic
+        <br>
+        Font Size:
+        <select name="fontsize">
+            <option value="16px">16px</option>
+            <option value="18px">18px</option>
+            <option value="20px">20px</option>
+        </select>
+    </form>
+    <a href="homework7.html">Back to Homework 7</a>
+</body>
+<script>
+    $(document).ready(function() {
+        $('#style-form input, #style-form select').change(function() {
+            applyStyles();
+        });
+    });
+
+    function applyStyles() {
+        var bgcolor = $('input[name="bgcolor"]:checked').val();
+        var fontsize = $('select[name="fontsize"]').val();
+        var textstyle = $('input[name="textstyle"]:checked').map(function() {
+            return this.value;
+        }).get();
+
+        $('#content-area').css('background-color', bgcolor);
+        $('#content-area').css('font-size', fontsize);
+        $('#content-area').css('font-weight', textstyle.includes('bold') ? 'bold' : 'normal');
+        $('#content-area').css('font-style', textstyle.includes('italic') ? 'italic' : 'normal');
+        $('#content-area').css('text-decoration', textstyle.includes('underline') ? 'underline' : 'none');
+    }
+</script>
+</html>
