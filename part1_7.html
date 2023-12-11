@@ -63,7 +63,7 @@
         var bgcolor = $('input[name="bgcolor"]:checked').val();
         var fontsize = $('select[name="fontsize"]').val();
         var textstyle = $('input[name="textstyle"]:checked').map(function() {
-            return this value;
+            return this.value;
         }).get();
 
         $('#content-area').css('background-color', bgcolor);
