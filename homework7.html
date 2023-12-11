@@ -1,33 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homework 2</title>
-    <!-- Edit the meta description below as needed -->
-    <meta name="description" content="Description of Homework 2">
+    <title>CNIT 133 Homework 7 - Object Model and Event Model</title>
+    <script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
     <style>
-        /* Your CSS styles for this specific homework assignment go here */
+        .description { display: none; }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Homework 2</h1>
-    </header>
-    <main>
-        <!-- Your content for Homework 2 goes here -->
-        <p>This is where you can put the content of Homework 7.</p>
-
-        <!-- Back button to return to the main page (README) -->
-        <button onclick="goBack()">Back to Main Page</button>
-
-        <script>
-            // JavaScript function to navigate back to the previous page
-            function goBack() {
-                window.history.back();
-            }
-        </script>
-    </main>
+    <h1>CNIT 133 Homework 7 - Object Model and Event Model</h1>
+    <a href="#" id="part1_7-link">PART 1</a>
+    <div id="part1_7-description" class="description">
+        Short description about PART 1. 
+        <a href="part1_7.html">Go to Part 1</a>
+    </div>
+    <a href="#" id="part2_7-link">PART 2</a>
+    <div id="part2_7-description" class="description">
+        Short description about PART 2.
+        <!-- Add link to PART 2 page here -->
+    </div>
+    <br>
+    <a href="https://jendoe0110.github.io/">Back to Main Course Page</a>
 </body>
+<script>
+    $(document).ready(function() {
+        $('#part1_7-link').click(function() {
+            $('#part1_7-description').toggle();
+        });
+        $('#part2_7-link').click(function() {
+            $('#part2_7-description').toggle();
+        });
+    });
+</script>
 </html>
-
