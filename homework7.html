@@ -4,7 +4,36 @@
     <title>CNIT 133 Homework 7 - Object Model and Event Model</title>
     <script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
     <style>
-        .description { display: none; }
+        body {
+            background-color: grey;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        a {
+            display: inline-block;
+            background-color: pink;
+            color: black;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #ff69b4; /* Lighter shade of pink for hover effect */
+        }
+
+        .description {
+            display: none;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -20,16 +49,17 @@
         <!-- Add link to PART 2 page here -->
     </div>
     <br>
-    <a href="https://jendoe0110.github.io/">Back to Main Course Page</a>
+    <a href="homework1.html">Back to Main Course Page</a>
+
+    <script>
+        $(document).ready(function() {
+            $('#part1_7-link').click(function() {
+                $('#part1_7-description').toggle();
+            });
+            $('#part2_7-link').click(function() {
+                $('#part2_7-description').toggle();
+            });
+        });
+    </script>
 </body>
-<script>
-    $(document).ready(function() {
-        $('#part1_7-link').click(function() {
-            $('#part1_7-description').toggle();
-        });
-        $('#part2_7-link').click(function() {
-            $('#part2_7-description').toggle();
-        });
-    });
-</script>
 </html>
