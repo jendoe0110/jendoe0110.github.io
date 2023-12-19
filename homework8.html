@@ -1,51 +1,56 @@
 <!DOCTYPE html>
 <html>
- <style>
-  table, th, td {
-   border: 1px solid black;
-   border-collapse: collapse;
-  }
-  th, td {
-   padding: 5px;
-  }
-  .button-container {
-   text-align: center;
-   background-color: grey;
-   padding: 10px;
-  }
-  .back-button {
-   background-color: pink;
-   color: white;
-   padding: 10px 20px;
-   text-decoration: none;
-   border-radius: 5px;
-  }
- </style>
- <body>
-  <div class="button-container">
-   <a class="back-button" href="https://jendoe0110.github.io/">Back To Main Course Page</a>
-  </div>
-  <h1>Homework 8 - AJAX Application</h1>
-  <button onclick="loadDoc()" type="button">
-   Get CD collection
-  </button>
-  <br/>
-  <br/>
-  <table id="demo">
-  </table>
-  <script>
-   function loadDoc() {
-    const xhttp = new XMLHttpRequest();
-    xhttp.onload = function() {
-     myFunction(this);
-    }
-    xhttp.open("GET", "https://jendoe0110.github.io/cd_catalog2.xml"); // Updated URL to the correct XML file
-    xhttp.send();
-   }
-   function myFunction(xml) {
-    const xmlDoc = xml.responseXML;
-    // Additional JavaScript code here...
-   }
-  </script>
- </body>
+<head>
+    <title>CD Collection</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1><a href="Homework1.html">Homework 8 - AJAX Application</a></h1>
+    
+    <button id="get-cd-collection">Get CD Collection</button>
+
+    <!-- Result section for CD Collection -->
+    <h2>CD Collection</h2>
+    <div id="cd-collection">
+        <!-- CD data will be displayed here -->
+    </div>
+
+    <!-- Explanation of AJAX and REST API sections will be added below -->
+    
+    <script>
+        // When the "Get CD Collection" button is clicked
+        $("#get-cd-collection").click(function() {
+            // AJAX request to fetch CD collection from GitHub Pages
+            $.ajax({
+                url: 'https://yourgithubusername.github.io/yourrepositoryname/cd_catalog.xml',
+                dataType: 'xml',
+                success: function(data) {
+                    var cdList = "<table border='1'><tr><th>TITLE</th><th>ARTIST</th><th>COUNTRY</th><th>COMPANY</th><th>PRICE</th><th>YEAR</th></tr>";
+                    
+                    // Loop through each CD in the XML data
+                    $(data).find('CD').each(function() {
+                        var title = $(this).find('TITLE').text();
+                        var artist = $(this).find('ARTIST').text();
+                        var country = $(this).find('COUNTRY').text();
+                        var company = $(this).find('COMPANY').text();
+                        var price = $(this).find('PRICE').text();
+                        var year = $(this).find('YEAR').text();
+                        
+                        // Append CD data to the table
+                        cdList += "<tr><td>" + title + "</td><td>" + artist + "</td><td>" + country + "</td><td>" + company + "</td><td>" + price + "</td><td>" + year + "</td></tr>";
+                    });
+                    
+                    cdList += "</table>";
+                    
+                    // Display the CD collection in the result section
+                    $("#cd-collection").html(cdList);
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors if the AJAX request fails
+                    $("#cd-collection").html("Error: " + error);
+                }
+            });
+        });
+    </script>
+</body>
 </html>
