@@ -1,56 +1,97 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>CD Collection</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
+<style>
+  table, th, td {
+    border : 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 5px;
+  }
+</style>
 <body>
-    <h1><a href="Homework8.html">Homework 8 - AJAX Application</a></h1>
-    
-    <button id="get-cd-collection">Get CD Collection</button>
 
-    <!-- Result section for CD Collection -->
-    <h2>CD Collection</h2>
-    <div id="cd-collection">
-        <!-- CD data will be displayed here -->
-    </div>
+<!-- Heading for the assignment -->
+<h1>Homework 8 - AJAX Application</h1>
 
-    <!-- Explanation of AJAX and REST API sections will be added below -->
-    
-    <script>
-        // When the "Get CD Collection" button is clicked
-        $("#get-cd-collection").click(function() {
-            // AJAX request to fetch CD collection from GitHub Pages
-            $.ajax({
-                url: 'https://jendoe0110.github.io/jendoe0110/cd_catalog.xml',
-                dataType: 'xml',
-                success: function(data) {
-                    var cdList = "<table border='1'><tr><th>TITLE</th><th>ARTIST</th><th>COUNTRY</th><th>COMPANY</th><th>PRICE</th><th>YEAR</th></tr>";
-                    
-                    // Loop through each CD in the XML data
-                    $(data).find('CD').each(function() {
-                        var title = $(this).find('TITLE').text();
-                        var artist = $(this).find('ARTIST').text();
-                        var country = $(this).find('COUNTRY').text();
-                        var company = $(this).find('COMPANY').text();
-                        var price = $(this).find('PRICE').text();
-                        var year = $(this).find('YEAR').text();
-                        
-                        // Append CD data to the table
-                        cdList += "<tr><td>" + title + "</td><td>" + artist + "</td><td>" + country + "</td><td>" + company + "</td><td>" + price + "</td><td>" + year + "</td></tr>";
-                    });
-                    
-                    cdList += "</table>";
-                    
-                    // Display the CD collection in the result section
-                    $("#cd-collection").html(cdList);
-                },
-                error: function(xhr, status, error) {
-                    // Handle errors if the AJAX request fails
-                    $("#cd-collection").html("Error: " + error);
-                }
-            });
-        });
-    </script>
+<!-- Button to go back to the main page -->
+<a href="https://jendoe0110.github.io/"><button>Main Page</button></a>
+
+<!-- Button to fetch CD collection -->
+<button type="button" onclick="loadDoc()">Get CD collection</button>
+<br><br>
+
+<!-- Table to display CD collection data -->
+<table id="demo"></table>
+
+<!-- Subheading for AJAX explanation -->
+<h2>Explanation of AJAX</h2>
+
+<!-- Explanation of AJAX code -->
+<p>
+    When you click the "Get CD Collection" button, it triggers the loadDoc() function.
+</p>
+<p>
+    Inside the loadDoc() function:
+</p>
+<ul>
+    <li>It creates a new XMLHttpRequest object named xhttp.</li>
+    <li>It sets the onload event handler to a function called myFunction(this). This function will be executed when the data is successfully loaded.</li>
+    <li>It specifies the HTTP request using the open() method with a "GET" request to the "cd_catalog.xml" file.</li>
+    <li>It sends the HTTP request using the send() method.</li>
+</ul>
+<p>
+    The myFunction(xml) function is defined to handle the response when the data is loaded:
+</p>
+<ul>
+    <li>It takes an XML object (xml) as a parameter, which represents the response from the XMLHttpRequest.</li>
+    <li>It parses the XML data using xml.responseXML to convert it into a structured XML document.</li>
+    <li>It retrieves all the &lt;CD&gt; elements from the XML document using xmlDoc.getElementsByTagName("CD").</li>
+    <li>It initializes an empty string variable table to build an HTML table.</li>
+</ul>
+<p>
+    Inside a for loop, it iterates through each &lt;CD&gt; element in the XML data and extracts the values of &lt;ARTIST&gt; and &lt;TITLE&gt; elements for each CD. These values are concatenated into HTML table rows (&lt;tr&gt;) with table data cells (&lt;td&gt;).
+</p>
+<p>
+    Finally, the table variable, containing the HTML table rows and cells, is set as the innerHTML of the table element with the ID "demo." This action populates the table with the CD collection data retrieved from the XML file.
+</p>
+
+<!-- Subheading for REST API explanation -->
+<h2>REST API</h2>
+
+<!-- Explanation of chosen REST API -->
+<p>
+    In the context of REST API, I have chosen the following API from the List of APIs.
+</p>
+<p>
+    [Provide details about the chosen REST API, including the type of response file, whether an API key is needed, any associated fees, and a link to its documentation.]
+</p>
+
+<script>
+  function loadDoc() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+      myFunction(this);
+    }
+    xhttp.open("GET", "cd_catalog.xml");
+    xhttp.send();
+  }
+
+  function myFunction(xml) {
+    const xmlDoc = xml.responseXML;
+    const x = xmlDoc.getElementsByTagName("CD");
+    let table = "<tr><th>Artist</th><th>Title</th></tr>";
+    for (let i = 0; i < x.length; i++) { 
+      table += "<tr><td>" +
+      x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+      "</td><td>" +
+      x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+      "</td></tr>";
+    }
+    document.getElementById("demo").innerHTML = table;
+  }
+</script>
+
 </body>
 </html>
+
